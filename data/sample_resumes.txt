@@ -1,0 +1,9 @@
+Khyati Sharma
+Python Developer
+
+Skills:
+Python, Flask, Machine Learning
+
+Experience:
+Built REST APIs
+Worked with databases
