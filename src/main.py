@@ -19,3 +19,8 @@ print(rule_result)
 
 print("\nML SEMANTIC SCORE")
 print(f"Similarity: {ml_score}%")
+
+final_score = round((rule_result["match_score"] * 0.6) + (ml_score * 0.4), 2)
+
+print("\nFINAL SCORE")
+print(f"{final_score}%")
