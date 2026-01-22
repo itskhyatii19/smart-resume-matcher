@@ -1,19 +1,63 @@
+# src/main.py
+
+import argparse
+import os
+
 from parser import load_resume
 from matcher import rule_based_match
 from scorer import semantic_similarity
 from ranker import rank_resumes
-import os
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-resume = load_resume(os.path.join(BASE_DIR, "..", "data", "sample_resumes.txt"))
-job = load_resume(os.path.join(BASE_DIR, "..", "data", "job_description.txt"))
+def single_resume_mode(resume_path, job_path):
+    resume = load_resume(resume_path)
+    job = load_resume(job_path)
 
-rule = rule_based_match(resume, job)
-ml = semantic_similarity(resume, job)
+    rule_result = rule_based_match(resume, job)
+    ml_score = semantic_similarity(resume, job)
 
-print(rule)
-print(f"ML Score: {ml}%")
+    print("\nRULE BASED MATCH")
+    print(rule_result)
 
-results = rank_resumes("../data/resumes", "../data/job_description.txt")
-print(results)
+    print("\nML SEMANTIC SCORE")
+    print(f"Similarity: {ml_score}%")
+
+    final_score = round(
+        (rule_result["match_score"] * 0.6) + (ml_score * 0.4), 2
+    )
+
+    print("\nFINAL SCORE")
+    print(f"{final_score}%")
+
+
+def batch_mode(resume_dir, job_path):
+    results = rank_resumes(resume_dir, job_path)
+
+    print("\nRANKED RESUMES")
+    for r in results:
+        print(r)
+
+
+if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser(
+        description="Smart Resume Matcher"
+    )
+
+    parser.add_argument(
+        "--resume",
+        help="Path to resume file OR folder of resumes"
+    )
+
+    parser.add_argument(
+        "--job",
+        required=True,
+        help="Path to job description file"
+    )
+
+    args = parser.parse_args()
+
+    if os.path.isdir(args.resume):
+        batch_mode(args.resume, args.job)
+    else:
+        single_resume_mode(args.resume, args.job)
