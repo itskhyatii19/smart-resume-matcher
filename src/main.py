@@ -1,26 +1,19 @@
 from parser import load_resume
-from matcher import match_resume
+from matcher import rule_based_match
 from scorer import semantic_similarity
+from ranker import rank_resumes
 import os
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-resume_path = os.path.join(BASE_DIR, "..", "data", "sample_resumes.txt")
-job_path = os.path.join(BASE_DIR, "..", "data", "job_description.txt")
+resume = load_resume(os.path.join(BASE_DIR, "..", "data", "sample_resumes.txt"))
+job = load_resume(os.path.join(BASE_DIR, "..", "data", "job_description.txt"))
 
-resume = load_resume(resume_path)
-job = load_resume(job_path)
+rule = rule_based_match(resume, job)
+ml = semantic_similarity(resume, job)
 
-rule_result = match_resume(resume, job)
-ml_score = semantic_similarity(resume, job)
+print(rule)
+print(f"ML Score: {ml}%")
 
-print("\nRULE BASED MATCH")
-print(rule_result)
-
-print("\nML SEMANTIC SCORE")
-print(f"Similarity: {ml_score}%")
-
-final_score = round((rule_result["match_score"] * 0.6) + (ml_score * 0.4), 2)
-
-print("\nFINAL SCORE")
-print(f"{final_score}%")
+results = rank_resumes("../data/resumes", "../data/job_description.txt")
+print(results)
