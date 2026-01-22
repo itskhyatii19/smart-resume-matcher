@@ -137,7 +137,7 @@ PDF parsing and explainable scoring system.
 👩‍💻 Author
 Khyati Sharma
 🎓 B.Tech AI Student
-💻 Backend & ML Developer
 
 🔗 GitHub: @itskhyatii19
+
 
