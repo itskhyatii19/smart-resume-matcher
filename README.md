@@ -42,7 +42,7 @@ This project aims to:
 ---
 
 ## System Architecture
-
+```
 smart-resume-matcher/
 │
 ├── data/
@@ -65,7 +65,7 @@ smart-resume-matcher/
 ├── requirements.txt
 ├── README.md
 └── .gitignore
-
+``` 
 
 ---
 
