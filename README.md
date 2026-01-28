@@ -111,11 +111,10 @@ This ensures important skills are prioritized while still capturing semantic rel
 | Interface   | CLI |
 | Tooling     | Git |
 
----
-
 ## Setup & Usage
 
 ### Installation
+
 ```bash
 git clone https://github.com/itskhyatii19/smart-resume-matcher.git
 cd smart-resume-matcher
@@ -124,13 +123,15 @@ Run (Single Resume)
 python src/main.py --resume data/r.txt --job data/job_description.txt
 Run (Batch Resume Ranking)
 python src/main.py --resume data/resumes --job data/job_description.txt
-Sample Output
+Sample Output:
 RANKED RESUMES
 
 {'file': 'r.txt', 'final_score': 62.57, 'matched_skills': ['python', 'flask']}
 {'file': 'Sarah_Chen_Senior_Developer.pdf', 'final_score': 38.10}
 {'file': 'Maria_Rodriguez_Entry_Level.pdf', 'final_score': 0.00}
-Key Learnings
+```
+## Key Learnings
+```bash
 Designing ATS-style ranking systems
 
 Applying NLP for semantic text similarity
@@ -142,8 +143,19 @@ Building explainable ML systems
 Structuring production-ready Python projects
 
 Handling unstructured data (PDF / TXT)
+```
+## Future Enhancements
+```bash
+Web interface using Streamlit or FastAPI
+
+Skill synonym and ontology mapping
+
+Resume improvement suggestions
+
+Cloud deployment
 
 Future Enhancements
+
 Web interface using Streamlit or FastAPI
 
 Skill synonym and ontology mapping
@@ -156,11 +168,14 @@ Transformer-based embeddings (BERT)
 
 Job role classification
 
-Author
-Khyati Sharma
+Transformer-based embeddings (BERT)
+
+Job role classification
+```
+## Author
+
+### Khyati Sharma
 B.Tech in Artificial Intelligence
 Aspiring Machine Learning & Backend Engineer
 
 GitHub: https://github.com/itskhyatii19
-
-⭐ If this project helped you or inspired you, feel free to star the repository.
